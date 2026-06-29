@@ -1,26 +1,228 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #000000;
+  --bg-elevated: #0a0a0a;
+  --surface: #141414;
+  --surface-elevated: #1a1a1a;
+  --surface-hover: #222222;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-orange: rgba(255, 107, 44, 0.4);
+  --border-yellow: rgba(245, 184, 0, 0.4);
+  --orange: #ff6b2c;
+  --orange-soft: #ff8f5c;
+  --yellow: #f5b800;
+  --yellow-soft: #ffd24d;
+  --cream: #f5f0e8;
+  --muted: #9a9a9a;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  --ring: rgba(255, 107, 44, 0.45);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-orange: var(--orange);
+  --color-yellow: var(--yellow);
+  --color-cream: var(--cream);
+  --color-muted: var(--muted);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .text-gradient-citrus {
+    background-image: linear-gradient(115deg, var(--cream) 0%, var(--orange) 45%, var(--yellow) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .mesh-citrus {
+    background-image:
+      radial-gradient(ellipse 80% 50% at 90% -10%, rgba(255, 107, 44, 0.15), transparent 55%),
+      radial-gradient(ellipse 60% 45% at 0% 100%, rgba(245, 184, 0, 0.12), transparent 52%),
+      radial-gradient(ellipse 40% 35% at 50% 50%, rgba(255, 107, 44, 0.05), transparent 70%);
+  }
+
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  .card-kot {
+    background: linear-gradient(165deg, rgba(26, 26, 26, 0.95), rgba(10, 10, 10, 0.92));
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+
+  .card-kot-hover {
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card-kot-hover:hover {
+    border-color: var(--border-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.7);
+  }
+
+  .kot-input {
+    @apply w-full rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--cream)] outline-none transition placeholder:text-[var(--muted)] focus:border-[var(--border-orange)] focus:ring-2 focus:ring-[var(--ring)];
+  }
+
+  .kot-range {
+    @apply h-2 w-full cursor-pointer appearance-none rounded-full bg-[var(--surface)];
+    accent-color: var(--orange);
+  }
+
+  .kot-range::-webkit-slider-thumb {
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: var(--orange);
+    border: 2px solid var(--cream);
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(255, 107, 44, 0.5);
+  }
+
+  .book-blueprint {
+    background-color: var(--bg-elevated);
+    background-image:
+      linear-gradient(rgba(255, 107, 44, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 107, 44, 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* LED bar sign — neon flex style */
+  .led-sign {
+    filter: drop-shadow(0 24px 48px rgba(255, 107, 44, 0.12));
+  }
+
+  .led-sign-chain {
+    width: 4px;
+    height: 32px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #666 0%, #333 60%, #222 100%);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  }
+
+  .led-sign-body {
+    margin-top: 6px;
+    padding: 4px;
+    border-radius: 14px;
+    background: linear-gradient(160deg, #333 0%, #141414 35%, #0a0a0a 100%);
+    box-shadow:
+      0 24px 64px rgba(0, 0, 0, 0.75),
+      0 0 0 1px rgba(255, 107, 44, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.07),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .led-sign-trace-path {
+    stroke-dasharray: 120 1240;
+    animation: led-trace 5s linear infinite;
+  }
+
+  .led-sign-brand {
+    text-shadow:
+      0 0 8px rgba(245, 184, 0, 0.8),
+      0 0 18px rgba(245, 184, 0, 0.35);
+  }
+
+  .led-sign-kot {
+    text-shadow:
+      0 0 20px rgba(255, 107, 44, 0.9),
+      0 0 40px rgba(255, 107, 44, 0.5),
+      0 0 60px rgba(245, 184, 0, 0.25);
+  }
+
+  .led-marquee-mask {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+
+  .led-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: led-marquee 16s linear infinite;
+  }
+
+  .led-marquee-track .led-marquee-text {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .led-marquee-reverse {
+    animation-direction: reverse;
+    animation-duration: 20s;
+  }
+
+  .led-marquee-text {
+    padding-right: 3rem;
+    font-family: var(--font-display), sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    text-shadow:
+      0 0 8px rgba(245, 184, 0, 0.85),
+      0 0 16px rgba(255, 107, 44, 0.35);
   }
 }
 
+@keyframes led-trace {
+  to {
+    stroke-dashoffset: -1360;
+  }
+}
+
+@keyframes led-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .led-sign-trace-path,
+  .led-marquee-track,
+  .led-marquee-text {
+    animation: none !important;
+  }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 107, 44, 0.35) transparent;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(255, 107, 44, 0.3);
 }
