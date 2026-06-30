@@ -66,6 +66,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/community" className="transition-colors hover:text-[var(--orange)]">
+                  Community
+                </Link>
+              </li>
+              <li>
                 <Link href={bookHref} className="transition-colors hover:text-[var(--orange)]">
                   Book an Event
                 </Link>

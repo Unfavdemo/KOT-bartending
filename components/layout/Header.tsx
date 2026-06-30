@@ -122,7 +122,7 @@ export function Header() {
             </button>
 
             <Button href={bookHref} size="sm" className="hidden sm:inline-flex">
-              Book Now
+              Book
             </Button>
 
             <button
@@ -174,7 +174,7 @@ export function Header() {
                   className="mt-2 w-full"
                   onClick={() => setMobileOpen(false)}
                 >
-                  Book Now
+                  Book a consultation
                 </Button>
               </div>
             </motion.nav>

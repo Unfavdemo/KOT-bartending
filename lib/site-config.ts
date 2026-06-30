@@ -3,7 +3,6 @@ export const navLinks = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/shop", label: "Shop" },
-  { href: "/community", label: "Community" },
 ] as const;
 
 /** Book intake lives on /services#book */
