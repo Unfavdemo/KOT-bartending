@@ -38,11 +38,20 @@ export function Header() {
     setPrevItems(totalItems);
   }, [totalItems, prevItems]);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mobileOpen]);
+
   return (
     <>
       <header
         className={cn(
-          "sticky top-0 z-40 border-b transition-all duration-300",
+          "safe-top sticky top-0 z-40 border-b transition-all duration-300",
           scrolled
             ? "border-[var(--border)] bg-black/95 py-0 shadow-lg shadow-black/40 backdrop-blur-lg"
             : "border-transparent bg-black/70 backdrop-blur-md",
@@ -92,7 +101,7 @@ export function Header() {
             <button
               type="button"
               onClick={openCart}
-              className="relative rounded-lg p-2 text-[var(--cream)] transition-colors hover:text-[var(--orange)]"
+              className="touch-target relative rounded-lg text-[var(--cream)] transition-colors hover:text-[var(--orange)]"
               aria-label={`Open cart, ${totalItems} items`}
             >
               <ShoppingBag className="h-5 w-5" />
@@ -119,7 +128,7 @@ export function Header() {
             <button
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="rounded-lg p-2 text-[var(--cream)] md:hidden"
+              className="touch-target rounded-lg text-[var(--cream)] md:hidden"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
@@ -150,7 +159,7 @@ export function Header() {
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
                       className={cn(
-                        "block rounded-lg px-3 py-3 text-sm font-medium transition-colors",
+                        "block rounded-lg px-3 py-3.5 text-base font-medium transition-colors",
                         pathname === link.href
                           ? "bg-[var(--surface)] text-[var(--orange)]"
                           : "text-[var(--muted)] hover:text-[var(--cream)]",

@@ -214,12 +214,13 @@ export function ConsultationScheduler({ onStepChange }: ConsultationSchedulerPro
       onSubmit={handleSubmit}
       className="card-kot overflow-hidden rounded-xl lg:grid lg:grid-cols-2 lg:items-start"
     >
-      <div className="border-b border-[var(--border)] bg-[var(--bg-elevated)] p-6 lg:border-b-0 lg:border-r lg:p-8">
+      <div className="border-b border-[var(--border)] bg-[var(--bg-elevated)] p-5 sm:p-6 lg:border-b-0 lg:border-r lg:p-8">
         <p className="text-xs font-bold uppercase tracking-wider text-[var(--orange)]">
           Step 1
         </p>
         <p className="mt-1 text-sm font-semibold text-[var(--cream)]">Pick a date</p>
-        <div className="mt-4 -mx-1 flex gap-2 overflow-x-auto px-1 pb-2 [scrollbar-width:thin]">
+        <p className="mt-1 text-[11px] text-[var(--muted)] sm:hidden">Swipe for more dates →</p>
+        <div className="mt-3 -mx-1 flex gap-2 overflow-x-auto px-1 pb-2 [scrollbar-width:thin]">
           {dates.map((d) => {
             const active = selectedDate === d.date;
             const open = openCountForDate(d.date);
@@ -300,7 +301,7 @@ export function ConsultationScheduler({ onStepChange }: ConsultationSchedulerPro
         )}
       </div>
 
-      <div className="p-6 pb-8 lg:p-8">
+      <div className="p-5 pb-8 sm:p-6 lg:p-8">
         <p className="text-xs font-bold uppercase tracking-wider text-[var(--orange)]">
           Step 2
         </p>

@@ -63,7 +63,7 @@ export function BookPageClient() {
           <button
             type="button"
             onClick={() => setPath(null)}
-            className="text-xs font-semibold text-[var(--muted)] hover:text-[var(--orange)]"
+            className="-ml-2 min-h-11 px-2 text-left text-sm font-semibold text-[var(--muted)] hover:text-[var(--orange)]"
           >
             ← Change path
           </button>
@@ -84,7 +84,7 @@ export function BookPageClient() {
             <button
               type="button"
               onClick={() => setPath(null)}
-              className="text-xs font-semibold text-[var(--muted)] hover:text-[var(--orange)]"
+              className="-ml-2 min-h-11 shrink-0 px-2 text-sm font-semibold text-[var(--muted)] hover:text-[var(--orange)]"
             >
               ← Change path
             </button>

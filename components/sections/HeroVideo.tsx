@@ -87,23 +87,23 @@ export function HeroVideo({ className = "" }: HeroVideoProps) {
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-black/60" />
 
       {showControls && (
-        <div className="absolute bottom-6 right-4 z-20 flex gap-2 sm:bottom-8 sm:right-8">
+        <div className="absolute right-4 top-4 z-20 flex gap-2 sm:bottom-8 sm:top-auto sm:right-8">
           <button
             type="button"
             onClick={togglePlay}
-            className="rounded-full border border-white/20 bg-black/50 p-2.5 text-white backdrop-blur transition-colors hover:border-[var(--orange)] hover:text-[var(--orange)]"
+            className="touch-target rounded-full border border-white/20 bg-black/50 text-white backdrop-blur transition-colors hover:border-[var(--orange)] hover:text-[var(--orange)]"
             aria-label={playing ? "Pause video" : "Play video"}
           >
-            {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+            {playing ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />}
           </button>
           {useLocal && (
             <button
               type="button"
               onClick={toggleMute}
-              className="rounded-full border border-white/20 bg-black/50 p-2.5 text-white backdrop-blur transition-colors hover:border-[var(--orange)] hover:text-[var(--orange)]"
+              className="touch-target rounded-full border border-white/20 bg-black/50 text-white backdrop-blur transition-colors hover:border-[var(--orange)] hover:text-[var(--orange)]"
               aria-label={muted ? "Unmute video" : "Mute video"}
             >
-              {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+              {muted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
             </button>
           )}
         </div>

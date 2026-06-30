@@ -33,7 +33,7 @@ export function FlavorPairing() {
   }
 
   return (
-    <section className="border-y border-[var(--border)] bg-[var(--bg-elevated)] py-20">
+    <section className="border-y border-[var(--border)] bg-[var(--bg-elevated)] py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-10 text-center">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--orange)]">Interactive</p>
@@ -92,7 +92,7 @@ export function FlavorPairing() {
           </Reveal>
 
           <Reveal delay={0.2}>
-            <div className="card-kot relative min-h-[400px] overflow-hidden rounded-xl p-8">
+            <div className="card-kot relative min-h-[280px] overflow-hidden rounded-xl p-5 sm:min-h-[360px] sm:p-8">
               <div className="absolute inset-0 mesh-citrus opacity-50" />
               <AnimatePresence mode="wait">
                 {recipe ? (
@@ -120,7 +120,7 @@ export function FlavorPairing() {
                       <button
                         type="button"
                         onClick={copyRecipe}
-                        className="shrink-0 rounded-lg border border-[var(--border)] p-2 text-[var(--muted)] transition-colors hover:border-[var(--orange)] hover:text-[var(--orange)]"
+                        className="touch-target shrink-0 rounded-lg border border-[var(--border)] text-[var(--muted)] transition-colors hover:border-[var(--orange)] hover:text-[var(--orange)]"
                         aria-label="Copy recipe"
                       >
                         {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}

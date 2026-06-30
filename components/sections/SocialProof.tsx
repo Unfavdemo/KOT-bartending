@@ -24,7 +24,7 @@ export function SocialProof() {
   }, []);
 
   return (
-    <section className="border-y border-[var(--border)] bg-[var(--bg-elevated)] py-20">
+    <section className="border-y border-[var(--border)] bg-[var(--bg-elevated)] py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-12">
           <SectionHeading
@@ -78,28 +78,32 @@ export function SocialProof() {
               onClick={() =>
                 setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length)
               }
-              className="rounded-lg border border-[var(--border)] p-2 text-[var(--muted)] transition-colors hover:border-[var(--orange)] hover:text-[var(--orange)]"
+              className="touch-target rounded-lg border border-[var(--border)] text-[var(--muted)] transition-colors hover:border-[var(--orange)] hover:text-[var(--orange)]"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
-            <div className="flex gap-2">
+            <div className="flex gap-1">
               {testimonials.map((_, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => setCurrent(i)}
-                  className={`h-2 w-2 rounded-full transition-colors ${
-                    i === current ? "bg-[var(--orange)]" : "bg-[var(--border)]"
-                  }`}
+                  className="touch-target rounded-full"
                   aria-label={`Go to testimonial ${i + 1}`}
-                />
+                >
+                  <span
+                    className={`block h-2.5 w-2.5 rounded-full transition-colors ${
+                      i === current ? "bg-[var(--orange)]" : "bg-[var(--border)]"
+                    }`}
+                  />
+                </button>
               ))}
             </div>
             <button
               type="button"
               onClick={() => setCurrent((c) => (c + 1) % testimonials.length)}
-              className="rounded-lg border border-[var(--border)] p-2 text-[var(--muted)] transition-colors hover:border-[var(--orange)] hover:text-[var(--orange)]"
+              className="touch-target rounded-lg border border-[var(--border)] text-[var(--muted)] transition-colors hover:border-[var(--orange)] hover:text-[var(--orange)]"
               aria-label="Next testimonial"
             >
               <ChevronRight className="h-5 w-5" />

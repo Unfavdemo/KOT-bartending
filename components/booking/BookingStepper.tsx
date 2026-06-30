@@ -60,7 +60,7 @@ export function BookingStepper({
                 <span className="min-w-0 text-center sm:text-left">
                   <span
                     className={cn(
-                      "block text-[10px] font-bold uppercase tracking-wider sm:text-xs",
+                      "block text-xs font-bold uppercase tracking-wide sm:text-xs",
                       isCurrent ? "text-[var(--cream)]" : "text-[var(--muted)]",
                     )}
                   >

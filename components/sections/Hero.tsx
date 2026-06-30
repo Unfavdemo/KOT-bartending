@@ -8,10 +8,10 @@ import { siteConfig, bookHref } from "@/lib/site-config";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[88vh] items-end overflow-hidden sm:items-center">
+    <section className="relative flex min-h-[80vh] items-center overflow-hidden sm:min-h-[88vh]">
       <HeroVideo />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-20 pt-32 sm:px-6 sm:pb-24 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-16 pt-28 sm:px-6 sm:pb-24 sm:pt-32 lg:px-8">
         <div className="max-w-2xl">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -45,15 +45,15 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="mt-10 flex flex-wrap gap-3"
+            className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap"
           >
-            <Button href="#about" size="lg">
+            <Button href="#about" size="lg" className="w-full sm:w-auto">
               Meet KOT
             </Button>
-            <Button href="/services" variant="secondary" size="lg">
+            <Button href="/services" variant="secondary" size="lg" className="w-full sm:w-auto">
               Our Services
             </Button>
-            <Button href={bookHref} variant="outline" size="lg">
+            <Button href={bookHref} variant="outline" size="lg" className="w-full sm:w-auto">
               Book an Event
             </Button>
           </motion.div>
@@ -65,7 +65,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-[var(--muted)] transition-colors hover:text-[var(--orange)]"
+        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-1 text-[var(--muted)] transition-colors hover:text-[var(--orange)] sm:bottom-6 sm:flex"
         aria-label="Scroll to learn about KOT"
       >
         <span className="text-[10px] font-bold uppercase tracking-widest">Discover</span>

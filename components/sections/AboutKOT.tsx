@@ -6,9 +6,9 @@ import { aboutContent } from "@/lib/about-content";
 
 export function AboutKOT() {
   return (
-    <section id="about" className="scroll-mt-20 border-b border-[var(--border)] py-20 md:py-28">
+    <section id="about" className="scroll-mt-20 border-b border-[var(--border)] py-14 md:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal direction="left">
             <LedBarSign className="w-full" />
           </Reveal>

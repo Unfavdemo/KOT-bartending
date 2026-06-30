@@ -48,7 +48,7 @@ export function MiniCart() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 z-50 flex h-full w-full max-w-md flex-col border-l border-[var(--border)] bg-[var(--bg-elevated)] shadow-2xl"
+            className="safe-top fixed right-0 top-0 z-50 flex h-full w-full max-w-md flex-col border-l border-[var(--border)] bg-[var(--bg-elevated)] shadow-2xl"
             role="dialog"
             aria-label="Shopping cart"
           >
@@ -62,7 +62,7 @@ export function MiniCart() {
               <button
                 type="button"
                 onClick={closeCart}
-                className="rounded-lg p-1 text-[var(--muted)] hover:text-[var(--cream)]"
+                className="touch-target rounded-lg text-[var(--muted)] hover:text-[var(--cream)]"
                 aria-label="Close cart"
               >
                 <X className="h-5 w-5" />
@@ -102,26 +102,26 @@ export function MiniCart() {
                             onClick={() =>
                               updateQuantity(item.productId, item.quantity - 1)
                             }
-                            className="rounded border border-[var(--border)] p-1 hover:border-[var(--orange)]"
+                            className="touch-target rounded border border-[var(--border)] hover:border-[var(--orange)]"
                             aria-label="Decrease quantity"
                           >
-                            <Minus className="h-3 w-3" />
+                            <Minus className="h-4 w-4" />
                           </button>
-                          <span className="w-6 text-center text-sm">{item.quantity}</span>
+                          <span className="w-8 text-center text-sm">{item.quantity}</span>
                           <button
                             type="button"
                             onClick={() =>
                               updateQuantity(item.productId, item.quantity + 1)
                             }
-                            className="rounded border border-[var(--border)] p-1 hover:border-[var(--orange)]"
+                            className="touch-target rounded border border-[var(--border)] hover:border-[var(--orange)]"
                             aria-label="Increase quantity"
                           >
-                            <Plus className="h-3 w-3" />
+                            <Plus className="h-4 w-4" />
                           </button>
                           <button
                             type="button"
                             onClick={() => removeItem(item.productId)}
-                            className="ml-auto text-xs text-[var(--muted)] hover:text-red-400"
+                            className="ml-auto min-h-11 px-2 text-xs text-[var(--muted)] hover:text-red-400"
                           >
                             Remove
                           </button>
@@ -134,7 +134,7 @@ export function MiniCart() {
             </div>
 
             {items.length > 0 && (
-              <div className="border-t border-[var(--border)] px-6 py-4">
+              <div className="safe-bottom border-t border-[var(--border)] px-6 py-4">
                 <div className="mb-4 flex justify-between text-sm">
                   <span className="text-[var(--muted)]">Subtotal</span>
                   <span className="font-semibold text-[var(--cream)]">

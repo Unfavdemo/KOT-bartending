@@ -20,7 +20,7 @@ export function CommunityPreview() {
   const [activeTab, setActiveTab] = useState("events");
 
   return (
-    <section className="py-20">
+    <section className="py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-12 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeading
@@ -34,7 +34,7 @@ export function CommunityPreview() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="mb-6 flex gap-2">
+          <div className="mb-6 flex flex-wrap gap-2">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -43,7 +43,7 @@ export function CommunityPreview() {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id)}
-                  className={`relative flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold uppercase tracking-wide transition-colors ${
+                  className={`relative flex min-h-11 flex-1 items-center justify-center gap-2 rounded-lg border px-3 py-2.5 text-xs font-semibold uppercase tracking-wide transition-colors sm:flex-none sm:px-4 sm:text-sm ${
                     isActive
                       ? "border-[var(--orange)] text-[var(--cream)]"
                       : "border-[var(--border)] text-[var(--muted)] hover:border-[var(--border-orange)] hover:text-[var(--cream)]"
@@ -56,8 +56,8 @@ export function CommunityPreview() {
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
-                  <Icon className="relative h-4 w-4" />
-                  <span className="relative hidden sm:inline">{tab.label}</span>
+                  <Icon className="relative h-4 w-4 shrink-0" />
+                  <span className="relative">{tab.label}</span>
                 </button>
               );
             })}

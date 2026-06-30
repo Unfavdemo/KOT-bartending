@@ -171,6 +171,17 @@
       0 0 8px rgba(245, 184, 0, 0.85),
       0 0 16px rgba(255, 107, 44, 0.35);
   }
+
+  @media (max-width: 639px) {
+    .led-sign-brand {
+      letter-spacing: 0.22em !important;
+    }
+
+    .led-marquee-text {
+      font-size: 9px;
+      letter-spacing: 0.22em;
+    }
+  }
 }
 
 @keyframes led-trace {
@@ -190,6 +201,28 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: clip;
+}
+
+@layer utilities {
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .touch-target {
+    @apply inline-flex min-h-11 min-w-11 items-center justify-center;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -215,12 +248,6 @@ html {
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 107, 44, 0.35) transparent;
-}
-
-body {
-  background: var(--bg);
-  color: var(--cream);
-  font-family: var(--font-body), system-ui, sans-serif;
 }
 
 ::selection {

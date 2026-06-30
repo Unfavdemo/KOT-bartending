@@ -11,7 +11,7 @@ import { services } from "@/lib/services";
 
 export function ServicesGrid() {
   return (
-    <section id="services" className="py-20 scroll-mt-20">
+    <section id="services" className="scroll-mt-20 py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-12">
           <SectionHeading

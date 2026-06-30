@@ -263,7 +263,7 @@ function LedBarSignInner({ className = "", editMode }: { className?: string; edi
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_45%,rgba(255,107,44,0.1),transparent)]" />
 
             <motion.p
-              className="led-sign-brand text-center font-[family-name:var(--font-display)] text-[11px] font-bold uppercase tracking-[0.45em] text-[var(--yellow)]"
+              className="led-sign-brand text-center font-[family-name:var(--font-display)] text-xs font-bold uppercase tracking-[0.22em] text-[var(--yellow)] sm:text-[11px] sm:tracking-[0.45em]"
               animate={{ opacity: [1, 0.8, 1] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
@@ -491,7 +491,7 @@ function LedBarSignInner({ className = "", editMode }: { className?: string; edi
               )}
             </div>
 
-            <p className="mt-1 text-center text-[10px] font-bold uppercase tracking-[0.35em] text-[var(--cream)]/70">
+            <p className="mt-1 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--cream)]/70 sm:text-[10px] sm:tracking-[0.35em]">
               Pouring · Style · Presence
             </p>
           </div>

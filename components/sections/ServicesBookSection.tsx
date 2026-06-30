@@ -24,7 +24,7 @@ export function ServicesBookSection() {
         <BookContactBar />
 
         <div className="mx-auto mt-10 max-w-3xl">
-          <div className="card-kot rounded-2xl p-8 md:p-10 lg:p-12">
+          <div className="card-kot rounded-2xl p-5 sm:p-8 md:p-10 lg:p-12">
             <Suspense
               fallback={
                 <p className="py-16 text-center text-sm text-[var(--muted)]">
