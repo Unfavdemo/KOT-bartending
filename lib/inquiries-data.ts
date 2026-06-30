@@ -67,3 +67,18 @@ export async function fetchEventInquiries(limit = 50): Promise<EventInquiry[]> {
 
   return rows.map(mapRow);
 }
+
+export async function deleteEventInquiry(id: number): Promise<boolean> {
+  if (!hasDatabase()) return false;
+
+  const sql = getDb();
+  if (!sql) return false;
+
+  const rows = (await sql`
+    DELETE FROM bookings
+    WHERE id = ${id}
+    RETURNING id
+  `) as { id: number }[];
+
+  return rows.length > 0;
+}

@@ -5,6 +5,7 @@ import { adminFetch } from "@/lib/admin-fetch";
 import { SCHEDULE, formatTime12 } from "@/lib/scheduling";
 import type { ScheduleBooking } from "@/lib/schedule-data";
 import { Button } from "@/components/ui/Button";
+import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import { cn } from "@/lib/utils";
 
 type ScheduleAdminProps = {
@@ -19,6 +20,8 @@ export function ScheduleAdmin({ onMessage }: ScheduleAdminProps) {
   );
   const [blockTime, setBlockTime] = useState<string>(SCHEDULE.slots[0]);
   const [blockLabel, setBlockLabel] = useState("Unavailable");
+  const [pendingCancel, setPendingCancel] = useState<ScheduleBooking | null>(null);
+  const [cancelling, setCancelling] = useState(false);
 
   const refresh = useCallback(async () => {
     setLoading(true);
@@ -89,13 +92,33 @@ export function ScheduleAdmin({ onMessage }: ScheduleAdminProps) {
     });
     if (!res.ok) {
       onMessage("Failed to cancel booking.");
-      return;
+      return false;
     }
     onMessage("Booking cancelled — slot is open again.");
     void refresh();
+    return true;
+  }
+
+  async function confirmCancel() {
+    if (!pendingCancel) return;
+    setCancelling(true);
+    try {
+      const ok = await removeBooking(pendingCancel.id);
+      if (ok) setPendingCancel(null);
+    } finally {
+      setCancelling(false);
+    }
+  }
+
+  function cancelDescription(booking: ScheduleBooking) {
+    if (booking.kind === "consultation" && booking.name) {
+      return `This removes ${booking.name}'s planning call on ${booking.slotDate} at ${formatTime12(booking.slotTime)} and opens the slot for new bookings.`;
+    }
+    return `This removes the blocked slot on ${booking.slotDate} at ${formatTime12(booking.slotTime)}.`;
   }
 
   return (
+    <>
     <section className="space-y-8">
       <header className="flex flex-wrap items-center justify-between gap-4">
         <div>
@@ -128,7 +151,7 @@ export function ScheduleAdmin({ onMessage }: ScheduleAdminProps) {
                 booking={b}
                 highlight
                 onConfirm={() => void setStatus(b.id, "confirmed")}
-                onCancel={() => void removeBooking(b.id)}
+                onCancel={() => setPendingCancel(b)}
               />
             ))}
           </ul>
@@ -155,7 +178,7 @@ export function ScheduleAdmin({ onMessage }: ScheduleAdminProps) {
                       ? () => void setStatus(b.id, "confirmed")
                       : undefined
                   }
-                  onCancel={() => void removeBooking(b.id)}
+                  onCancel={() => setPendingCancel(b)}
                 />
               ))
             )}
@@ -213,6 +236,23 @@ export function ScheduleAdmin({ onMessage }: ScheduleAdminProps) {
         </form>
       </div>
     </section>
+
+    <ConfirmDialog
+      open={pendingCancel != null}
+      title={
+        pendingCancel?.kind === "consultation"
+          ? "Cancel this planning call?"
+          : "Remove this blocked slot?"
+      }
+      description={pendingCancel ? cancelDescription(pendingCancel) : ""}
+      confirmLabel={pendingCancel?.kind === "consultation" ? "Cancel call" : "Remove block"}
+      cancelLabel="Keep entry"
+      loading={cancelling}
+      variant="danger"
+      onCancel={() => !cancelling && setPendingCancel(null)}
+      onConfirm={() => void confirmCancel()}
+    />
+    </>
   );
 }
 
